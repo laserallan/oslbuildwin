@@ -1,0 +1,28 @@
+[submodule "phase1/zlib"]
+	path = phase1/zlib
+	url = https://github.com/madler/zlib.git
+[submodule "phase1/openexr"]
+	path = phase1/openexr
+	url = https://github.com/openexr/openexr.git
+[submodule "phase1/libjpeg"]
+	path = phase1/libjpeg
+	url = https://github.com/LuaDist/libjpeg.git
+[submodule "phase2/libpng"]
+	path = phase2/libpng
+	url = https://github.com/coapp-packages/libpng.git
+[submodule "phase2/libtiff"]
+	path = phase2/libtiff
+	url = https://github.com/LuaDist/libtiff.git
+[submodule "phase2/openexr"]
+	path = phase2/openexr
+	url = https://github.com/openexr/openexr.git
+[submodule "phase3/oiio"]
+	path = phase3/oiio
+	url = https://github.com/OpenImageIO/oiio.git
+[submodule "phase4/llvm"]
+	path = phase4/llvm
+	url = https://github.com/llvm-mirror/llvm.git
+	branch = release_35
+[submodule "phase5/OpenShadingLanguage"]
+	path = phase5/OpenShadingLanguage
+	url = https://github.com/imageworks/OpenShadingLanguage.git
