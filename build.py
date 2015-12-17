@@ -23,8 +23,8 @@ def main():
 
 	build_config = 'Debug'
 	build_dir = 'build'
-	build_phases = [True, False, False, False, False]
-	patches = [[('libjpeg/CMakeLists.txt.patch', '../../phase1/libjpeg/CMakeLists.txt')],[],[],[],[]]
+	build_phases = [False, True, False, False, False]
+	patches = [[('libjpeg/CMakeLists.txt.patch', '../../phase1/libjpeg/CMakeLists.txt')],[('libtiff/CMakeLists.txt.patch', '../../phase2/libtiff/CMakeLists.txt')],[],[],[]]
 	devenv_path = '\"C:\\Program Files (x86)\\Microsoft Visual Studio %d.0\\Common7\\IDE\\devenv.exe\"' % (msvcver)
 
 	make_dir_safe(download_dir)
@@ -47,12 +47,15 @@ def main():
 	else:
 		print("Boost already unpacked, skipping")
 	
+	# extend path to make open exr build
+	os.environ["PATH"] += os.pathsep + os.path.abspath('install/lib')
 	# Build phases
 	make_dir_safe(build_dir)
 	cmake_generator_string = '-G \"Visual Studio %d %d Win%d\"' % (msvcver, msvcyear, architecture)
 	for i in range(len(build_phases)):
 		if build_phases[i]:
 			phase_idx = i + 1
+			print('Generating build project for phase%d' % phase_idx)
 			phase_dir = '%s/phase%d' %  (build_dir, phase_idx)
 			make_dir_safe(phase_dir)
 			os.chdir(phase_dir)

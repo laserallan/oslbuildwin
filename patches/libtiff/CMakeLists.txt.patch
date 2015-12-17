@@ -1,0 +1,13 @@
+diff --git "a/C:\\Users\\David\\AppData\\Local\\Temp\\TortoiseGit\\CMa36A3.tmp\\CMakeLists-43d5bd6-left.txt" "b/D:\\work\\code\\oslbuildwin\\phase2\\libtiff\\CMakeLists.txt"
+index c014cf0..44ef0eb 100644
+--- "a/C:\\Users\\David\\AppData\\Local\\Temp\\TortoiseGit\\CMa36A3.tmp\\CMakeLists-43d5bd6-left.txt"
++++ "b/D:\\work\\code\\oslbuildwin\\phase2\\libtiff\\CMakeLists.txt"
+@@ -147,7 +147,7 @@ set ( ZIP_SUPPORT 1 )
+ #undef _LARGE_FILES
+ 
+ # Define to empty if `const' does not conform to ANSI C.
+-set ( const const )
++#set ( const const )
+ 
+ # Define to `__inline__' or `__inline' if that's what the C compiler
+ # calls it, or to nothing if 'inline' is not supported under any name.
