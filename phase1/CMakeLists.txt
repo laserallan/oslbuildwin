@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+set (MY_INSTALL_PATH ../../install)
+set (CMAKE_INSTALL_PREFIX ${MY_INSTALL_PATH})
+add_subdirectory(zlib)
+add_subdirectory(openexr/IlmBase)

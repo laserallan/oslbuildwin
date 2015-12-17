@@ -1,0 +1,3 @@
+[submodule "zlib"]
+path = phase1/zlib
+url = https://github.com/madler/zlib.git
