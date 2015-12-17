@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
-set (MY_INSTALL_PATH ${CMAKE_BINARY_DIR}/../../install)
-set (CMAKE_INSTALL_PREFIX ${MY_INSTALL_PATH})
+get_filename_component(ABS_INSTALL "${CMAKE_BINARY_DIR}/../../install" ABSOLUTE)
+set (CMAKE_INSTALL_PREFIX ${ABS_INSTALL})
 set (ZLIB_LIBRARY zlibd.lib)
 set (ZLIB_INCLUDE_DIR ${MY_INSTALL_PATH}/install/include)
 #set (ILMBASE_INCLUDE_DIR ${MY_INSTALL_PATH}/include/OpenEXR)

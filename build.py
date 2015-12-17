@@ -7,6 +7,9 @@ def make_dir_safe(dir):
 	if not os.path.exists(dir):
 		os.mkdir(dir)
 
+def apply_patch(p):
+	patch_file, target_file = p
+	subprocess.call('patch -f %s ../../patches/%s' % (target_file, patch_file))
 
 def main():
 	download_dir = 'downloads'
@@ -21,6 +24,7 @@ def main():
 	build_config = 'Debug'
 	build_dir = 'build'
 	build_phases = [True, False, False, False, False]
+	patches = [[('libjpeg/CMakeLists.txt.patch', '../../phase1/libjpeg/CMakeLists.txt')],[],[],[],[]]
 	devenv_path = '\"C:\\Program Files (x86)\\Microsoft Visual Studio %d.0\\Common7\\IDE\\devenv.exe\"' % (msvcver)
 
 	make_dir_safe(download_dir)
@@ -52,6 +56,9 @@ def main():
 			phase_dir = '%s/phase%d' %  (build_dir, phase_idx)
 			make_dir_safe(phase_dir)
 			os.chdir(phase_dir)
+			# apply patches
+			for patch in patches[i]:
+				apply_patch(patch)
 			res = subprocess.call('cmake ../../phase%d %s' %(phase_idx, cmake_generator_string))
 			if not res == 0:
 				print('Failed to cmake phase%d' % phase_idx)
