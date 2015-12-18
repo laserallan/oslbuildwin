@@ -17,5 +17,6 @@ include_directories(${CMAKE_BINARY_DIR}/../../phase5/OpenShadingLanguage/src/inc
 link_directories(${ABS_INSTALL}/lib)
 set(FLEX_EXECUTABLE "${ABS_INSTALL}/bin/win_flex.exe")
 set(BISON_EXECUTABLE "${ABS_INSTALL}/bin/win_bison.exe")
+# Ignore warnings to increase signal to noise rate
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W0")
 add_subdirectory(OpenShadingLanguage)
-message(${LLVM_LIBRARY})

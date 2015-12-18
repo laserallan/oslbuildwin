@@ -26,7 +26,13 @@ def main():
 	flex_target_dir = 'install/bin'
 	build_config = 'Debug'
 	build_dir = 'build'
-	build_phases = [(True,''), (True, ''), (True, ''), (True, ''), (True, '-DOSL_BUILD_CPP11=1 -DLLVM_FIND_QUIETLY=0 -DBUILDSTATIC=1 -DOSL_BUILD_PLUGINS=0 -Wno-dev')]
+	build_phases = [
+	(True,''), 
+	(True, '-DZLIB_INCLUDE_DIR=%s -DZLIB_ROOT=%s' % (os.path.abspath('install/include'), os.path.abspath('install'))), 
+	(True, ''), 
+	(True, ''), 
+	(True, '-DOSL_BUILD_CPP11=1 -DLLVM_FIND_QUIETLY=0 -DBUILDSTATIC=1 -DOSL_BUILD_PLUGINS=0 -Wno-dev')]
+
 	patches = [
 	[('libjpeg/CMakeLists.txt.patch', '../../phase1/libjpeg/CMakeLists.txt')],
 	[('libtiff/CMakeLists.txt.patch', '../../phase2/libtiff/CMakeLists.txt')],
