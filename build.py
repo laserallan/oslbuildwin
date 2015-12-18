@@ -4,6 +4,8 @@ import subprocess
 import zipfile
 import shutil
 import glob
+import sys
+
 def make_dir_safe(dir):
 	if not os.path.exists(dir):
 		os.mkdir(dir)
@@ -11,6 +13,12 @@ def make_dir_safe(dir):
 def apply_patch(p):
 	patch_file, target_file = p
 	subprocess.call('patch -f %s ../../patches/%s' % (target_file, patch_file))
+
+def progress_hook(count, blockSize, totalSize):
+	percent = int(count*blockSize*100/totalSize)
+	sys.stdout.write("\rProgress: %2d%%" % percent)
+	#sys.stdout.write("\b\b\b")
+	sys.stdout.flush()
 
 def main():
 	download_dir = 'downloads'
@@ -52,7 +60,7 @@ def main():
 	if force_download_boost or not os.path.exists(boost_target):
 		print("Downloading boost")
 		boost_url = 'http://iweb.dl.sourceforge.net/project/boost/boost-binaries/%s/boost_%s-msvc-%d.0-%d.exe' % (boost_version, boost_version_, msvcver, architecture)
-		urllib.urlretrieve(boost_url, boost_target)
+		urllib.urlretrieve(boost_url, boost_target, progress_hook)
 	else:
 		print("Boost already downloaded, skipping")
 	# Choosing random file, not sure if there is a safer way of knowing if we have a successful unpack here
@@ -71,7 +79,7 @@ def main():
 	make_dir_safe('install/bin')
 	if force_download_flexbison or not os.path.exists(flex_target):
 		print("Downloading flex")
-		urllib.urlretrieve('http://tcpdiag.dl.sourceforge.net/project/winflexbison/win_flex_bison-latest.zip', flex_target)
+		urllib.urlretrieve('http://tcpdiag.dl.sourceforge.net/project/winflexbison/win_flex_bison-latest.zip', flex_target, progress_hook)
 	else:
 		print("Flex already downloaded, skipping")
 
