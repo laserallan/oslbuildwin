@@ -1,0 +1,17 @@
+ src/cmake/externalpackages.cmake | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/cmake/externalpackages.cmake b/src/cmake/externalpackages.cmake
+index d819e4c..733e5b0 100644
+--- a/src/cmake/externalpackages.cmake
++++ b/src/cmake/externalpackages.cmake
+@@ -239,6 +239,9 @@ if ((LLVM_LIBRARY OR LLVM_STATIC) AND LLVM_INCLUDES AND LLVM_DIRECTORY AND LLVM_
+     execute_process (COMMAND ${LLVM_CONFIG} --libfiles
+                      OUTPUT_VARIABLE LLVM_LIBRARY
+                      OUTPUT_STRIP_TRAILING_WHITESPACE)
++    #string (REPLACE " " ";" LLVM_LIBRARY ${LLVM_LIBRARY})
++    string (REPLACE "lib" "" LLVM_LIBRARY ${LLVM_LIBRARY})
++    string (REPLACE ".a" "" LLVM_LIBRARY ${LLVM_LIBRARY})
+     string (REPLACE " " ";" LLVM_LIBRARY ${LLVM_LIBRARY})
+   endif ()
+   if (NOT LLVM_FIND_QUIETLY)

@@ -1,0 +1,16 @@
+ src/liboslcomp/osllex.l | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/liboslcomp/osllex.l b/src/liboslcomp/osllex.l
+index 1fd383a..e74684a 100644
+--- a/src/liboslcomp/osllex.l
++++ b/src/liboslcomp/osllex.l
+@@ -94,7 +94,7 @@ CPLUSCOMMENT    \/\/.*\n
+ #include <vector>
+ #include <string>
+ 
+-#include "oslcomp_pvt.h"
++#include "../liboslcomp/oslcomp_pvt.h"
+ 
+ using namespace OSL;
+ using namespace OSL::pvt;

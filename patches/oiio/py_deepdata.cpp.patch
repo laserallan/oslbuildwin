@@ -1,0 +1,22 @@
+ src/python/py_deepdata.cpp | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/python/py_deepdata.cpp b/src/python/py_deepdata.cpp
+index 2a536d9..c202fde 100644
+--- a/src/python/py_deepdata.cpp
++++ b/src/python/py_deepdata.cpp
+@@ -94,10 +94,10 @@ DeepData_set_deep_value_uint (DeepData &dd, int pixel,
+ void declare_deepdata()
+ {
+     class_<DeepData>("DeepData")
+-        .def_readonly ("npixels",    &DeepData::pixels)   //DEPRECATED(1.7)
+-        .def_readonly ("nchannels",  &DeepData::channels) //DEPRECATED(1.7)
+-        .def_readonly ("pixels",     &DeepData::pixels)
+-        .def_readonly ("channels",   &DeepData::channels)
++        //.def_readonly ("npixels",    &DeepData::pixels)   //DEPRECATED(1.7)
++        //.def_readonly ("nchannels",  &DeepData::channels) //DEPRECATED(1.7)
++        //.def_readonly ("pixels",     &DeepData::pixels)
++        //.def_readonly ("channels",   &DeepData::channels)
+ 
+         .def("init",  &DeepData_init)
+         .def("init",  &DeepData_init_spec)

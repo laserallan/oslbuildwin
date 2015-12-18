@@ -1,0 +1,16 @@
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index aedc51c..17f39c5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -425,7 +425,7 @@ add_subdirectory (src/liboslquery)
+ add_subdirectory (src/liboslexec)
+ 
+ add_subdirectory (src/oslc)
+-add_subdirectory (src/shaders)
++#add_subdirectory (src/shaders)
+ add_subdirectory (src/oslinfo)
+ 
+ if (OSL_BUILD_TESTS)

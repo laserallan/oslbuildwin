@@ -1,0 +1,16 @@
+ src/liboslcomp/oslgram.y | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/liboslcomp/oslgram.y b/src/liboslcomp/oslgram.y
+index 53b8c71..0daa9f1 100644
+--- a/src/liboslcomp/oslgram.y
++++ b/src/liboslcomp/oslgram.y
+@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ #include <stack>
+ #include <string>
+ 
+-#include "oslcomp_pvt.h"
++#include "../liboslcomp/oslcomp_pvt.h"
+ 
+ #undef yylex
+ #define yylex osllex
