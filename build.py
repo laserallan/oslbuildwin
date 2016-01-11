@@ -12,7 +12,9 @@ def make_dir_safe(dir):
 
 def apply_patch(p):
 	patch_file, target_file = p
-	subprocess.call('patch -f %s ../../patches/%s' % (target_file, patch_file))
+	cmd = 'patch -f %s %s' % (os.path.abspath(target_file), os.path.abspath('../../patches/' + patch_file))
+	print(cmd)
+	subprocess.call(cmd)
 
 def progress_hook(count, blockSize, totalSize):
 	percent = int(count*blockSize*100/totalSize)
@@ -34,12 +36,13 @@ def main():
 	flex_target_dir = 'install/bin'
 	build_config = 'Debug'
 	build_dir = 'build'
+	boost_library_dir = os.path.abspath('downloads/boost/lib%d-msvc-%d.0' % (architecture, msvcver))
 	build_phases = [
 	(True,''), 
 	(True, '-DZLIB_INCLUDE_DIR=%s -DZLIB_ROOT=%s' % (os.path.abspath('install/include'), os.path.abspath('install'))), 
+	(True, '-DBOOST_LIBRARYDIR=%s -DOIIO_BUILD_TOOLS=1' ), 
 	(True, ''), 
-	(True, ''), 
-	(True, '-DOSL_BUILD_CPP11=1 -DLLVM_FIND_QUIETLY=0 -DBUILDSTATIC=1 -DOSL_BUILD_PLUGINS=0 -Wno-dev')]
+	(True, '-DOSL_BUILD_CPP11=1 -DLLVM_FIND_QUIETLY=0 -DBUILDSTATIC=1 -DOSL_BUILD_PLUGINS=0 -Wno-dev -DBOOST_LIBRARYDIR=%s' % boost_library_dir)]
 
 	patches = [
 	[('libjpeg/CMakeLists.txt.patch', '../../phase1/libjpeg/CMakeLists.txt')],
@@ -107,9 +110,12 @@ def main():
 			make_dir_safe(phase_dir)
 			os.chdir(phase_dir)
 			# apply patches
+			print(os.path.abspath('.'))
 			for patch in patches[i]:
 				apply_patch(patch)
-			res = subprocess.call('cmake ../../phase%d %s %s' %(phase_idx, cmake_params, cmake_generator_string))
+			cmake_cmd = 'cmake ../../phase%d %s %s' % (phase_idx, cmake_params, cmake_generator_string)
+			print(cmake_cmd)
+			res = subprocess.call(cmake_cmd)
 			if not res == 0:
 				print('Failed to cmake phase%d' % phase_idx)
 				return
