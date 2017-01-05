@@ -1,0 +1,17 @@
+diff --git "a/C:\\Users\\david\\AppData\\Local\\Temp\\TortoiseGit\\Cos9CD3.tmp\\CostAllocator-a4cf325-left.h" "b/C:\\work\\code\\oslbuildwin\\phase4\\llvm\\include\\llvm\\CodeGen\\PBQP\\CostAllocator.h"
+index ff62c09..a63686a 100644
+--- "a/C:\\Users\\david\\AppData\\Local\\Temp\\TortoiseGit\\Cos9CD3.tmp\\CostAllocator-a4cf325-left.h"
++++ "b/C:\\work\\code\\oslbuildwin\\phase4\\llvm\\include\\llvm\\CodeGen\\PBQP\\CostAllocator.h"
+@@ -87,10 +87,10 @@ private:
+                !std::is_same<PoolEntry*,
+                              typename std::remove_const<CostKeyT>::type>::value,
+                bool>::type
+-    operator()(const PoolEntry* a, const CostKeyT &b) {
++    operator()(const PoolEntry* a, const CostKeyT &b) const {
+       return compare(a->getCost(), b);
+     }
+-    bool operator()(const PoolEntry* a, const PoolEntry* b) {
++    bool operator()(const PoolEntry* a, const PoolEntry* b) const {
+       return compare(a->getCost(), b->getCost());
+     }
+   private:

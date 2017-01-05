@@ -24,8 +24,8 @@ def progress_hook(count, blockSize, totalSize):
 
 def main():
 	download_dir = 'downloads'
-	msvcver = 12
-	msvcyear = 2013
+	msvcver = 14
+	msvcyear = 2015
 	architecture = 64
 	boost_version = '1.59.0'
 	boost_version_ = '1_59_0'
@@ -40,7 +40,7 @@ def main():
 	build_phases = [
 	(True,''), 
 	(True, '-DZLIB_INCLUDE_DIR=%s -DZLIB_ROOT=%s' % (os.path.abspath('install/include'), os.path.abspath('install'))), 
-	(True, '-DBOOST_LIBRARYDIR=%s -DOIIO_BUILD_TOOLS=1' ), 
+	(True, '-DBOOST_LIBRARYDIR=%s -DOIIO_BUILD_TOOLS=1' % boost_library_dir), 
 	(True, ''), 
 	(True, '-DOSL_BUILD_CPP11=1 -DLLVM_FIND_QUIETLY=0 -DBUILDSTATIC=1 -DOSL_BUILD_PLUGINS=0 -Wno-dev -DBOOST_LIBRARYDIR=%s' % boost_library_dir)]
 
@@ -48,7 +48,9 @@ def main():
 	[('libjpeg/CMakeLists.txt.patch', '../../phase1/libjpeg/CMakeLists.txt')],
 	[('libtiff/CMakeLists.txt.patch', '../../phase2/libtiff/CMakeLists.txt')],
 	[('oiio/py_deepdata.cpp.patch', '../../phase3/oiio/src/python/py_deepdata.cpp')],
-	[],
+	[('llvm/InstrProfReader.h.patch', '../../phase4/llvm/include/llvm/ProfileData/InstrProfReader.h'),
+	('llvm/CostAllocator.h.patch', '../../phase4/llvm/include/llvm/CodeGen/PBQP/CostAllocator.h'),
+	('llvm/Math.h.patch', '../../phase4/llvm/include/llvm/CodeGen/PBQP/Math.h')],
 	[('OpenShadingLanguage/CMakeLists.txt.patch','../../phase5/OpenShadingLanguage/CMakeLists.txt'),
 	('OpenShadingLanguage/externalpackages.cmake.patch','../../phase5/OpenShadingLanguage/src/cmake/externalpackages.cmake'),
 	('OpenShadingLanguage/flexbison.cmake.patch','../../phase5/OpenShadingLanguage/src/cmake/flexbison.cmake'),
@@ -82,7 +84,7 @@ def main():
 	make_dir_safe('install/bin')
 	if force_download_flexbison or not os.path.exists(flex_target):
 		print("Downloading flex")
-		urllib.urlretrieve('http://tcpdiag.dl.sourceforge.net/project/winflexbison/win_flex_bison-latest.zip', flex_target, progress_hook)
+		urllib.urlretrieve('https://sourceforge.net/projects/winflexbison/files/win_flex_bison-latest.zip/download', flex_target, progress_hook)
 	else:
 		print("Flex already downloaded, skipping")
 

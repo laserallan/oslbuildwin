@@ -1,0 +1,15 @@
+diff --git "a/C:\\Users\\david\\AppData\\Local\\Temp\\TortoiseGit\\Ins3B50.tmp\\InstrProfReader-a4cf325-left.h" "b/C:\\work\\code\\oslbuildwin\\phase4\\llvm\\include\\llvm\\ProfileData\\InstrProfReader.h"
+index 7a5a71d..4f9a29c 100644
+--- "a/C:\\Users\\david\\AppData\\Local\\Temp\\TortoiseGit\\Ins3B50.tmp\\InstrProfReader-a4cf325-left.h"
++++ "b/C:\\work\\code\\oslbuildwin\\phase4\\llvm\\include\\llvm\\ProfileData\\InstrProfReader.h"
+@@ -51,8 +51,8 @@ public:
+   InstrProfIterator(InstrProfReader *Reader) : Reader(Reader) { Increment(); }
+ 
+   InstrProfIterator &operator++() { Increment(); return *this; }
+-  bool operator==(const InstrProfIterator &RHS) { return Reader == RHS.Reader; }
+-  bool operator!=(const InstrProfIterator &RHS) { return Reader != RHS.Reader; }
++  bool operator==(const InstrProfIterator &RHS) const { return Reader == RHS.Reader; }
++  bool operator!=(const InstrProfIterator &RHS) const { return Reader != RHS.Reader; }
+   InstrProfRecord &operator*() { return Record; }
+   InstrProfRecord *operator->() { return &Record; }
+ };
