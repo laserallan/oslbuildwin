@@ -47,7 +47,9 @@ def main():
 	patches = [
 	[('libjpeg/CMakeLists.txt.patch', '../../phase1/libjpeg/CMakeLists.txt')],
 	[('libtiff/CMakeLists.txt.patch', '../../phase2/libtiff/CMakeLists.txt')],
-	[('oiio/py_deepdata.cpp.patch', '../../phase3/oiio/src/python/py_deepdata.cpp')],
+	[('oiio/py_deepdata.cpp.patch', '../../phase3/oiio/src/python/py_deepdata.cpp'), 
+	('oiio/oiiotool.cpp.patch', '../../phase3/oiio/src/oiiotool/oiiotool.cpp'),
+	('oiio/idiff.cpp.patch', '../../phase3/oiio/src/idiff/idiff.cpp')],
 	[('llvm/InstrProfReader.h.patch', '../../phase4/llvm/include/llvm/ProfileData/InstrProfReader.h'),
 	('llvm/CostAllocator.h.patch', '../../phase4/llvm/include/llvm/CodeGen/PBQP/CostAllocator.h'),
 	('llvm/Math.h.patch', '../../phase4/llvm/include/llvm/CodeGen/PBQP/Math.h')],
